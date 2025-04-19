@@ -245,19 +245,25 @@ footer {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 40px;
+    overflow: hidden;
 }
 
 .awards-container {
     display: flex;
-    overflow: hidden;
-    scroll-behavior: smooth;
+    transition: transform 0.5s ease;
     gap: 2rem;
     padding: 2rem 0;
+    width: fit-content;
 }
 
 .award-card {
-    min-width: calc(33.333% - 1.33rem);
-    flex: 0 0 auto;
+    flex: 0 0 calc(33.333% - 1.33rem);
+    min-width: 300px;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-right: 1rem;
 }
 
 .carousel-btn {
@@ -272,11 +278,6 @@ footer {
     border-radius: 50%;
     cursor: pointer;
     z-index: 10;
-    transition: background 0.3s;
-}
-
-.carousel-btn:hover {
-    background: rgba(0, 0, 0, 0.8);
 }
 
 .prev-btn {
@@ -287,34 +288,9 @@ footer {
     right: 0;
 }
 
-.carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-}
-
-.dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #ccc;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.dot.active {
-    background: #333;
-}
-
-@media (max-width: 1024px) {
-    .award-card {
-        min-width: calc(50% - 1rem);
-    }
-}
-
 @media (max-width: 768px) {
     .award-card {
-        min-width: 100%;
+        flex: 0 0 calc(100% - 2rem);
+        min-width: 250px;
     }
 }
