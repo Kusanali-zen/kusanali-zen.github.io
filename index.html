@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <div class="logo">Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#awards">Awards</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to My Portfolio</h1>
+            <p>I'm a Web Developer & Designer</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Hello! I'm a passionate web developer with expertise in creating beautiful and functional websites.</p>
+            </div>
+            <div class="skills">
+                <h3>My Skills</h3>
+                <ul>
+                    <li>HTML5 & CSS3</li>
+                    <li>JavaScript</li>
+                    <li>PHP</li>
+                    <li>MySQL</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards" class="awards">
+        <h2>Awards & Certifications</h2>
+        <div class="awards-carousel">
+            <button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+            <div class="awards-container">
+                <div class="award-card">
+                    <img src="src/images/awards/cert1.jpg" alt="Certification 1">
+                    <h3>Web Development Certification</h3>
+                    <p>Issued by: Organization Name</p>
+                    <p>Date: January 2023</p>
+                    <a href="src/files/certifications/cert1.pdf" class="cert-link" target="_blank">View Certificate</a>
+                </div>
+                <div class="award-card">
+                    <img src="src/images/awards/cert2.jpg" alt="Certification 2">
+                    <h3>JavaScript Advanced Course</h3>
+                    <p>Issued by: Organization Name</p>
+                    <p>Date: March 2023</p>
+                    <a href="src/files/certifications/cert2.pdf" class="cert-link" target="_blank">View Certificate</a>
+                </div>
+                <!-- Add remaining certification cards here -->
+            </div>
+            <button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-dots"></div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <h2>My Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>Project 1</h3>
+                <img src="src/images/projects/project1.jpg" alt="Project 1">
+                <p>Description of project 1</p>
+                <a href="src/files/projects/project1-docs.pdf" class="project-link">View Documentation</a>
+            </div>
+            <div class="project-card">
+                <h3>Project 2</h3>
+                <img src="src/images/projects/project2.jpg" alt="Project 2">
+                <p>Description of project 2</p>
+                <a href="src/files/projects/project2-docs.pdf" class="project-link">View Documentation</a>
+            </div>
+            <div class="project-card">
+                <h3>Project 3</h3>
+                <img src="src/images/projects/project3.jpg" alt="Project 3">
+                <p>Description of project 3</p>
+                <a href="src/files/projects/project3-docs.pdf" class="project-link">View Documentation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Contact Me</h2>
+        <div class="contact-form">
+            <form id="contactForm">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/Kusanali-zen" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/khimhar-abualas-a64440269/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/khimhar.abualas/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        </div>
+        <p>&copy; <span id="currentYear"></span> My Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/carousel.js"></script>
+    <script src="js/contact.js"></script>
+</body>
+</html>
