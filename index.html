@@ -164,6 +164,95 @@
             transform: scale(1.1);
             background: #ff5a8d !important;
         }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 30px 20px;
+                max-width: 90%;
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .message {
+                font-size: 1.1em;
+            }
+
+            button {
+                padding: 12px 30px;
+                font-size: 1em;
+            }
+
+            #missCounter {
+                font-size: 2em;
+            }
+
+            .celebration {
+                font-size: 1.2em;
+            }
+
+            #openBtn {
+                position: relative !important;
+                left: auto !important;
+                transform: none !important;
+                width: auto;
+            }
+
+            .button-container {
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+
+            #yesBtn, #noBtn {
+                position: relative !important;
+                left: auto !important;
+                transform: none !important;
+                width: 80%;
+                max-width: 250px;
+            }
+
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+            }
+
+            #yesBtn:hover {
+                transform: scale(1.1) !important;
+            }
+
+            /* Make envelope smaller on mobile */
+            .envelope-container {
+                font-size: 4em !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .message {
+                font-size: 1em;
+            }
+
+            #missCounter {
+                font-size: 1.5em;
+            }
+
+            .envelope-container {
+                font-size: 3em !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -178,22 +267,13 @@
             from someone who thinks you're pretty cool 😎
         </div>
 
-       <!-- <div style="margin: 40px 0;">
+        <div style="margin: 40px 0;" class="envelope-container">
             <div style="font-size: 5em; animation: shake 0.5s ease infinite;">📨</div>
         </div>
 
-        <button id="openBtn" style="background: #ff6b9d; color: white; position: relative; transform: none;">
+        <button id="openBtn" style="background: #ff6b9d; color: white; position: static; transform: none;">
             Click to Open Message
-        </button -->
-		<div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-		<div style="margin: 40px 0;">
-        <div style="font-size: 5em; animation: shake 0.5s ease infinite;">📨</div>
-		</div>
-
-		<button id="openBtn" style="background: #ff6b9d; color: white; padding: 10px 10px; border: none; border-radius: 5px; cursor: pointer;">
-			Click to Open Message
-		</button>
-		</div>
+        </button>
 
         <div style="margin-top: 30px; font-size: 0.9em; color: #666;">
             ⚠️ Warning: May contain feelings ⚠️
@@ -205,8 +285,8 @@
         <h1>💌 The Message 💌</h1>
         
         <div class="message">
-            Hi Ching! So... I've been thinking...<br>
-            <strong>Gimingaw na kaau ko nimo!</strong> 😢<br><br>
+            Hey! So... I've been thinking...<br>
+            <strong>I miss you!</strong> 😢<br><br>
             Should we talk again?
         </div>
 
@@ -258,18 +338,34 @@
             
             // Change text after a moment
             setTimeout(() => {
-                celebration.innerHTML = '📱 Great! Calling you now... 📱<br><small>(Just kidding, but seriously, please! reply na to my messages 😢!)</small>';
+                celebration.innerHTML = '📱 Great! Calling you now... 📱<br><small>(Just kidding, but seriously, let\'s talk!)</small>';
             }, 2000);
         });
 
-        // Make NO button run away
-        noBtn.addEventListener('mouseenter', () => {
+        // Make NO button run away (works on both desktop and mobile)
+        function makeNoButtonRunAway() {
             noClickCount++;
-            const x = Math.random() * (window.innerWidth - 200);
-            const y = Math.random() * (window.innerHeight - 100);
-            noBtn.style.left = x + 'px';
-            noBtn.style.top = y + 'px';
-            noBtn.style.transform = 'none';
+            const container = document.querySelector('.container');
+            const containerRect = container.getBoundingClientRect();
+            
+            // For mobile, keep button within container
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                // On mobile, just hide the NO button and show message
+                noBtn.style.display = 'none';
+                const tempMsg = document.createElement('div');
+                tempMsg.style.cssText = 'margin: 20px 0; color: #ff6b9d; font-size: 1.2em;';
+                tempMsg.textContent = 'Aww, the "No" button ran away! 😅 Guess that means YES? 💕';
+                document.querySelector('.button-container').appendChild(tempMsg);
+            } else {
+                // Desktop behavior - button moves around screen
+                const x = Math.random() * (window.innerWidth - 200);
+                const y = Math.random() * (window.innerHeight - 100);
+                noBtn.style.left = x + 'px';
+                noBtn.style.top = y + 'px';
+                noBtn.style.transform = 'none';
+            }
             
             if (noClickCount === 1) {
                 noBtn.textContent = 'Wait, come back! 🥺';
@@ -282,6 +378,12 @@
             } else {
                 noBtn.textContent = 'Still missing you... 💔';
             }
+        }
+
+        noBtn.addEventListener('mouseenter', makeNoButtonRunAway);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            makeNoButtonRunAway();
         });
 
         // Increase miss counter (only starts after clicking YES)
