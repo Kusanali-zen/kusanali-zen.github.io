@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Important Message!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(45deg, #ff6b9d, #c06c84, #6c5b7b, #355c7d);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            position: relative;
+        }
+
+        h1 {
+            color: #ff6b9d;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .message {
+            font-size: 1.3em;
+            color: #333;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .button-container {
+            margin: 30px 0;
+            position: relative;
+            height: 60px;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #yesBtn {
+            background: #4CAF50;
+            color: white;
+            animation: pulse 1.5s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.1); }
+        }
+
+        #yesBtn:hover {
+            background: #45a049;
+            transform: translateX(-50%) scale(1.2);
+        }
+
+        #noBtn {
+            background: #f44336;
+            color: white;
+            top: 0;
+        }
+
+        #noBtn:hover {
+            background: #da190b;
+        }
+
+        .hearts {
+            position: fixed;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff6b9d;
+            font-size: 30px;
+            animation: float 3s ease-in;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-200px) rotate(180deg);
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .celebration {
+            font-size: 1.5em;
+            color: #4CAF50;
+            margin-top: 20px;
+            animation: celebrate 0.5s ease;
+        }
+
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        #missCounter {
+            font-size: 3em;
+            color: #ff6b9d;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        #openBtn {
+            animation: pulse 1.5s ease infinite;
+        }
+
+        #openBtn:hover {
+            transform: scale(1.1);
+            background: #ff5a8d !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <!-- First Screen: Announcement -->
+    <div class="container" id="announcementScreen">
+        <h1>📢 IMPORTANT ANNOUNCEMENT 📢</h1>
+        
+        <div class="message">
+            You have <strong>ONE (1)</strong> unread message<br>
+            from someone who thinks you're pretty cool 😎
+        </div>
+
+       <!-- <div style="margin: 40px 0;">
+            <div style="font-size: 5em; animation: shake 0.5s ease infinite;">📨</div>
+        </div>
+
+        <button id="openBtn" style="background: #ff6b9d; color: white; position: relative; transform: none;">
+            Click to Open Message
+        </button -->
+		<div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+		<div style="margin: 40px 0;">
+        <div style="font-size: 5em; animation: shake 0.5s ease infinite;">📨</div>
+		</div>
+
+		<button id="openBtn" style="background: #ff6b9d; color: white; padding: 10px 10px; border: none; border-radius: 5px; cursor: pointer;">
+			Click to Open Message
+		</button>
+		</div>
+
+        <div style="margin-top: 30px; font-size: 0.9em; color: #666;">
+            ⚠️ Warning: May contain feelings ⚠️
+        </div>
+    </div>
+
+    <!-- Second Screen: The Real Message -->
+    <div class="container hidden" id="messageScreen">
+        <h1>💌 The Message 💌</h1>
+        
+        <div class="message">
+            Hi Ching! So... I've been thinking...<br>
+            <strong>Gimingaw na kaau ko nimo!</strong> 😢<br><br>
+            Should we talk again?
+        </div>
+
+        <div class="button-container">
+            <button id="yesBtn">YES! 💬</button>
+            <button id="noBtn">No... 😢</button>
+        </div>
+
+        <div id="celebration" class="hidden celebration">
+            🎊 YAY! I'll text you right now! 🎊
+        </div>
+
+        <div id="missCounter" class="hidden">❤️ Missing you level: <span id="counter">1000</span>% ❤️</div>
+    </div>
+
+    <script>
+        const announcementScreen = document.getElementById('announcementScreen');
+        const messageScreen = document.getElementById('messageScreen');
+        const openBtn = document.getElementById('openBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const celebration = document.getElementById('celebration');
+        const missCounter = document.getElementById('missCounter');
+        const counter = document.getElementById('counter');
+        const heartsContainer = document.getElementById('hearts');
+        
+        let missLevel = 1000;
+        let noClickCount = 0;
+        let counterInterval;
+
+        // Open the message
+        openBtn.addEventListener('click', () => {
+            announcementScreen.style.animation = 'celebrate 0.5s ease';
+            setTimeout(() => {
+                announcementScreen.classList.add('hidden');
+                messageScreen.classList.remove('hidden');
+                messageScreen.style.animation = 'celebrate 0.5s ease';
+            }, 500);
+        });
+
+        // YES button clicked
+        yesBtn.addEventListener('click', () => {
+            celebration.classList.remove('hidden');
+            missCounter.classList.remove('hidden');
+            yesBtn.style.display = 'none';
+            noBtn.style.display = 'none';
+            createHearts();
+            startMissCounter();
+            
+            // Change text after a moment
+            setTimeout(() => {
+                celebration.innerHTML = '📱 Great! Calling you now... 📱<br><small>(Just kidding, but seriously, please! reply na to my messages 😢!)</small>';
+            }, 2000);
+        });
+
+        // Make NO button run away
+        noBtn.addEventListener('mouseenter', () => {
+            noClickCount++;
+            const x = Math.random() * (window.innerWidth - 200);
+            const y = Math.random() * (window.innerHeight - 100);
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+            noBtn.style.transform = 'none';
+            
+            if (noClickCount === 1) {
+                noBtn.textContent = 'Wait, come back! 🥺';
+            } else if (noClickCount === 2) {
+                noBtn.textContent = 'Please? Just one chat?';
+            } else if (noClickCount === 3) {
+                noBtn.textContent = 'I really miss you! 😢';
+            } else if (noClickCount === 4) {
+                noBtn.textContent = 'Fine, you can\'t click me! 😝';
+            } else {
+                noBtn.textContent = 'Still missing you... 💔';
+            }
+        });
+
+        // Increase miss counter (only starts after clicking YES)
+        function startMissCounter() {
+            counterInterval = setInterval(() => {
+                missLevel += 10;
+                counter.textContent = missLevel;
+            }, 1000);
+        }
+
+        // Create floating hearts
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.textContent = '❤️';
+                    heart.style.left = Math.random() * window.innerWidth + 'px';
+                    heart.style.top = window.innerHeight + 'px';
+                    heartsContainer.appendChild(heart);
+
+                    setTimeout(() => heart.remove(), 3000);
+                }, i * 100);
+            }
+        }
+    </script>
+</body>
+</html>
